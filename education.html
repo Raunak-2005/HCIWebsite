@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Education | Raunak Thanawala</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="education.css" />
+</head>
+
+<body>
+  <main class="edu-container">
+
+    <!-- LEFT: Education Details -->
+    <section class="edu-left" id="edu-details">
+      <h1>Veermata Jijabai Technological Institute, Mumbai</h1>
+      <h3>B.Tech in Computer Engineering</h3>
+      <p><strong>Duration:</strong> Aug 2023 – Jun 2027</p>
+      <p><strong>CGPA (till Sem IV):</strong> 8.92</p>
+    </section>
+
+    <!-- RIGHT: Education List -->
+    <aside class="edu-right">
+      <h2>Education</h2>
+      <ul class="edu-list">
+        <li class="active" onclick="showDetails('btech')">B.Tech - VJTI Mumbai</li>
+        <li onclick="showDetails('hsc')">HSC - Pace Junior Science College</li>
+        <li onclick="showDetails('icse')">ICSE - IES Manik Vidyamandir</li>
+      </ul>
+    </aside>
+  </main>
+
+  <script>
+    function showDetails(level) {
+      const details = document.getElementById("edu-details");
+      const items = document.querySelectorAll(".edu-list li");
+      items.forEach(li => li.classList.remove("active"));
+      event.target.classList.add("active");
+
+      if (level === "btech") {
+        details.innerHTML = `
+          <h1>Veermata Jijabai Technological Institute, Mumbai</h1>
+          <h3>B.Tech in Computer Engineering</h3>
+          <p><strong>Duration:</strong> Aug 2023 – Jun 2027</p>
+          <p><strong>CGPA (till Sem V):</strong> 8.92</p>
+        `;
+      }
+
+      if (level === "hsc") {
+        details.innerHTML = `
+          <h1>Pace Junior Science College, Dadar, Mumbai</h1>
+          <h3>Class 12 (Higher Secondary Education)</h3>
+          <p><strong>Duration:</strong> Mar 2021 – Jun 2023</p>
+          <p><strong>HSC Board:</strong> 93%</p>
+          <p><strong>JEE Main:</strong> 99.3 percentile</p>
+          <p><strong>Maharashtra CET:</strong> 99.93 percentile (Rank 102)</p>
+        `;
+      }
+
+      if (level === "icse") {
+        details.innerHTML = `
+          <h1>IES Manik Vidyamandir, Bandra (West), Mumbai</h1>
+          <h3>Class 10 (Secondary Education)</h3>
+          <p><strong>Board:</strong> ICSE</p>
+          <p><strong>Percentage:</strong> 96%</p>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professional | Raunak Thanawala</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="professional.css" />
+</head>
+
+<body>
+  <main class="pro-container">
+
+    <!-- LEFT SIDE: Info/Description -->
+    <section class="pro-left" id="pro-details">
+      <h2>Projects</h2>
+      <p>Choose a Project to see details</p>
+    </section>
+
+    <!-- RIGHT SIDE: Navigation and List -->
+    <section class="pro-right">
+      <div class="tab-buttons">
+        <button class="active" onclick="showTab('projects')">Projects</button>
+        <button onclick="showTab('skills')">Skills</button>
+        <button onclick="showTab('extra')">Extracurriculars</button>
+      </div>
+
+      <ul class="pro-list" id="pro-list">
+        <li onclick="showProject('recipaura')">RecipAura</li>
+        <li onclick="showProject('looping')">Looping Game</li>
+        <li onclick="showProject('flappy')">Flappy Bird Clone</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <script>
+    // Switch between Projects, Skills, and Extracurriculars
+    function showTab(tab) {
+      const buttons = document.querySelectorAll(".tab-buttons button");
+      buttons.forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+
+      const list = document.getElementById("pro-list");
+      const details = document.getElementById("pro-details");
+
+      if (tab === "projects") {
+        list.innerHTML = `
+          <li onclick="showProject('recipaura')">RecipAura</li>
+          <li onclick="showProject('looping')">Looping Game</li>
+          <li onclick="showProject('flappy')">Flappy Bird Clone</li>`;
+        details.innerHTML = `<h2>Projects</h2><p>Choose a Project to see details</p>`;
+      }
+
+      if (tab === "skills") {
+        list.innerHTML = `
+          <li onclick="showSkill('languages')">Languages</li>
+          <li onclick="showSkill('tools')">Developer Tools</li>
+          <li onclick="showSkill('frameworks')">Technologies / Frameworks</li>`;
+        details.innerHTML = `<h2>Skills</h2><p>Select a skill category to view details.</p>`;
+      }
+
+      if (tab === "extra") {
+        list.innerHTML = `<li onclick="showExtra('dla')">DLA VJTI</li>`;
+        details.innerHTML = `<h2>Extracurriculars</h2><p>Select an activity to view details.</p>`;
+      }
+    }
+
+    // PROJECT DETAILS
+    function showProject(project) {
+      const details = document.getElementById("pro-details");
+
+      if (project === "recipaura") {
+        details.innerHTML = `
+          <h2>RecipAura | Flutter, Dart</h2>
+          <p><strong>Duration:</strong> October 2024 – January 2025</p>
+          <ul>
+            <li>Developed the frontend for a recipe app using Flutter.</li>
+            <li>Designed UI for finding recipes and getting the ingredients needed.</li>
+            <li>Collaborated with backend developers for seamless integration.</li>
+            <li>Presented the project on a livestream to 20+ Seniors.</li>
+          </ul>`;
+      }
+
+      if (project === "looping") {
+        details.innerHTML = `
+          <h2>Looping Game | Godot, Aseprite</h2>
+          <p><strong>Duration:</strong> October 2024 – January 2025 (Ongoing)</p>
+          <ul>
+            <li>New game inspired by Balatro, related to code logic.</li>
+            <li>Created a mini compiler that takes a basic code language as input and returns output.</li>
+            <li>Designed a custom pixel font using Aseprite.</li>
+            <li>Collaborating with another developer to optimize game speed and logic.</li>
+          </ul>`;
+      }
+
+      if (project === "flappy") {
+        details.innerHTML = `
+          <h2>Flappy Bird Clone | Godot, Aseprite</h2>
+          <p><strong>Duration:</strong> May 2025</p>
+          <ul>
+            <li>Remade Flappy Bird in Godot game engine.</li>
+            <li>Created custom pixel art using Aseprite.</li>
+            <li>Uploaded and published the game on itch.io.</li>
+            <li><strong>Itch.io Page:</strong> Available on profile page.</li>
+          </ul>`;
+      }
+    }
+
+    // SKILL DETAILS
+    function showSkill(skill) {
+      const details = document.getElementById("pro-details");
+
+      if (skill === "languages") {
+        details.innerHTML = `
+          <h2>Languages</h2>
+          <p>GDScript, Python, C++, HTML/CSS (Basic)</p>`;
+      }
+
+      if (skill === "tools") {
+        details.innerHTML = `
+          <h2>Developer Tools</h2>
+          <p>VS Code, Android Studio, Godot Engine</p>`;
+      }
+
+      if (skill === "frameworks") {
+        details.innerHTML = `
+          <h2>Technologies / Frameworks</h2>
+          <p>Flutter, Dart, Godot</p>`;
+      }
+    }
+
+    // EXTRACURRICULAR DETAILS
+    function showExtra(extra) {
+      const details = document.getElementById("pro-details");
+
+      if (extra === "dla") {
+        details.innerHTML = `
+          <h2>DLA VJTI</h2>
+          <p><strong>Role:</strong> Design Sector Head</p>
+          <ul>
+            <li>Made designs for DLA’s events and social media sites.</li>
+            <li>Participated in DLA Litfest as a helper to organize events.</li>
+          </ul>`;
+      }
+    }
+  </script>
+</body>
+</html>

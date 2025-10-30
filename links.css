@@ -1,0 +1,86 @@
+:root {
+  --pink: #ff75a0;
+  --magenta: #e63775;
+  --white: #ffffff;
+  --black: #000000;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Fredoka One", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    -25deg,
+    var(--pink) 0%,
+    var(--pink) 45%,
+    var(--magenta) 45%,
+    var(--magenta) 100%
+  );
+  overflow: hidden;
+}
+
+/* ====== MAIN CONTAINER ====== */
+.links-container {
+  text-align: center;
+  color: var(--black);
+}
+
+/* ====== HEADER ====== */
+.links-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.gift-icon {
+  width: 60px;
+  height: 60px;
+}
+
+.links-header h1 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+}
+
+/* ====== BUTTONS ====== */
+.links-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.link-btn {
+  display: block;
+  width: 300px;
+  padding: 1rem 0;
+  background: var(--white);
+  color: var(--black);
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 1.3rem;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.2s, color 0.3s;
+}
+
+/* Highlight effect (like black capsule) */
+.link-btn:hover {
+  background: var(--black);
+  color: var(--white);
+  transform: scale(1.05);
+}
+
+/* ====== FOOTER ====== */
+.footer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 0.9rem;
+}
