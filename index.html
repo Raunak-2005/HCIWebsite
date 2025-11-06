@@ -6,6 +6,9 @@
   <title>Raunak Thanawala | Portfolio Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    
+  </style>
 </head>
 
 <body>
@@ -17,7 +20,6 @@
       <p>Education</p>
     </a>
 
-    <!-- Resume now clickable -->
     <a href="Resume_Updated.pdf" class="menu-item" target="_blank">
       <div class="circle"><img src="icons/pokeball.svg" alt="Poké Ball Icon"></div>
       <p>Resume</p>
@@ -28,18 +30,18 @@
       <p>Personal</p>
     </a>
 
-    <!-- Social Media Buttons (now clickable links) -->
-    <a href="https://www.youtube.com/" target="_blank" class="menu-item">
+    <!-- Social Media Embed Buttons -->
+    <a href="#" class="menu-item" onclick="showEmbed('youtube')">
       <div class="circle"><img src="icons/youtube.svg" alt="YouTube Logo"></div>
       <p>YouTube</p>
     </a>
 
-    <a href="https://www.instagram.com/" target="_blank" class="menu-item">
+    <a href="#" class="menu-item" onclick="showEmbed('instagram')">
       <div class="circle"><img src="icons/instagram.svg" alt="Instagram Logo"></div>
       <p>Instagram</p>
     </a>
 
-    <a href="https://twitter.com/" target="_blank" class="menu-item">
+    <a href="#" class="menu-item" onclick="showEmbed('twitter')">
       <div class="circle"><img src="icons/twitter.svg" alt="Twitter Logo"></div>
       <p>Twitter</p>
     </a>
@@ -54,5 +56,124 @@
       <p>Links</p>
     </a>
   </main>
+
+<!-- full working example for your page's embed area -->
+<!-- keep your existing menu grid; replace only the embed container and script with this -->
+<div class="embed-container" id="embedContainer" style="display:none;">
+  <button class="close-btn" onclick="closeEmbed()">×</button>
+  <div id="embedInner" style="text-align:center; width:100%;"></div>
+</div>
+
+<script>
+/* helpers */
+function closeEmbed() {
+  const container = document.getElementById('embedContainer');
+  const inner = document.getElementById('embedInner');
+  inner.innerHTML = '';
+  container.style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* main function to show embed for each platform */
+function showEmbed(platform) {
+  const container = document.getElementById('embedContainer');
+  const inner = document.getElementById('embedInner');
+  inner.innerHTML = ''; // clear previous
+  container.style.display = 'block';
+  window.scrollTo({ top: container.offsetTop, behavior: 'smooth' });
+
+  if (platform === 'youtube') {
+    // Preferred embed iframe
+    const videoId = 'XfqOB4hvxlY';
+    const iframe = document.createElement('iframe');
+
+    // Standard YouTube embed with recommended attributes
+    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?rel=0';
+    iframe.width = '900';
+    iframe.height = '506';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.style.maxWidth = '80%';
+    iframe.style.border = 'none';
+    iframe.style.borderRadius = '10px';
+    iframe.style.boxShadow = '0 4px 12px rgba(0,0,0,.25)';
+
+    // NOTE: some browsers won't trigger an onerror for blocked embeds. We'll still create a visible fallback:
+    // Add iframe to page, and also show a fallback link/thumbnail below it (so user can open original)
+    inner.appendChild(iframe);
+
+    // Add a small fallback block (thumbnail + open on YouTube)
+    const fallback = document.createElement('div');
+    fallback.style.marginTop = '12px';
+    fallback.innerHTML = `
+      <div style="font-size:14px;color:#555;">
+        If the video doesn't play here, <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener">open it on YouTube</a>.
+      </div>
+      <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;text-decoration:none;">
+        <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="YouTube thumbnail" style="max-width:320px;border-radius:8px;border:1px solid #ddd;">
+      </a>
+    `;
+    inner.appendChild(fallback);
+
+    // Extra debug tip for you: if embed shows an error, the video owner has likely disabled embedding.
+    // You can confirm by opening the YouTube page, clicking "Share" -> "Embed": if embed code is missing,
+    // embedding is disabled for that video.
+  }
+
+  else if (platform === 'instagram') {
+    // Instagram public profile or post embed (works for public content)
+    // Using the instagram embed URL you already used:
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.instagram.com/florkingcomps/embed';
+    iframe.width = '900';
+    iframe.height = '800';
+    iframe.style.maxWidth = '80%';
+    iframe.style.border = 'none';
+    iframe.style.borderRadius = '10px';
+    inner.appendChild(iframe);
+  }
+
+  else if (platform === 'twitter') {
+    // Use official Twitter (X) widgets.js to embed the tweet reliably.
+    // We'll create a blockquote with the canonical twitter.com URL (not x.com).
+    const tweetUrl = 'https://twitter.com/JoeBiden/status/1756888470599967000';
+
+    // Insert blockquote markup required by platform.twitter.com/widgets.js
+    const block = document.createElement('blockquote');
+    block.className = 'twitter-tweet';
+    block.setAttribute('data-lang', 'en');
+    block.style.margin = '0 auto';
+    block.style.maxWidth = '680px';
+    block.innerHTML = `<a href="${tweetUrl}"></a>`; // the script will replace this
+
+    inner.appendChild(block);
+
+    // Add the widgets.js script to render the tweet. If already on the page, this will just hydrate.
+    if (!window.twttr) {
+      // Append script once
+      const s = document.createElement('script');
+      s.src = 'https://platform.twitter.com/widgets.js';
+      s.async = true;
+      s.onload = () => { /* widgets script loaded */ };
+      document.body.appendChild(s);
+    } else {
+      // If script already loaded, ask it to process newly added block
+      try {
+        window.twttr.widgets.load();
+      } catch (e) {
+        // ignore
+      }
+    }
+
+    // Important: use the twitter.com canonical URL (as above). That avoids redirects that caused xoilac tv to appear.
+  }
+
+  else {
+    inner.innerText = 'Unknown platform';
+  }
+}
+</script>
+
 </body>
 </html>
