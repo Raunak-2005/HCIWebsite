@@ -104,17 +104,6 @@ function showEmbed(platform) {
     inner.appendChild(iframe);
 
     // Add a small fallback block (thumbnail + open on YouTube)
-    const fallback = document.createElement('div');
-    fallback.style.marginTop = '12px';
-    fallback.innerHTML = `
-      <div style="font-size:14px;color:#555;">
-        If the video doesn't play here, <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener">open it on YouTube</a>.
-      </div>
-      <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener" style="display:inline-block;margin-top:6px;text-decoration:none;">
-        <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="YouTube thumbnail" style="max-width:320px;border-radius:8px;border:1px solid #ddd;">
-      </a>
-    `;
-    inner.appendChild(fallback);
 
     // Extra debug tip for you: if embed shows an error, the video owner has likely disabled embedding.
     // You can confirm by opening the YouTube page, clicking "Share" -> "Embed": if embed code is missing,
