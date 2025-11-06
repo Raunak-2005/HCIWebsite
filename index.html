@@ -6,9 +6,6 @@
   <title>Raunak Thanawala | Portfolio Menu</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-  <style>
-    
-  </style>
 </head>
 
 <body>
@@ -57,112 +54,80 @@
     </a>
   </main>
 
-<!-- full working example for your page's embed area -->
-<!-- keep your existing menu grid; replace only the embed container and script with this -->
-<div class="embed-container" id="embedContainer" style="display:none;">
-  <button class="close-btn" onclick="closeEmbed()">×</button>
-  <div id="embedInner" style="text-align:center; width:100%;"></div>
-</div>
+  <div class="embed-container" id="embedContainer" style="display:none;">
+    <button class="close-btn" onclick="closeEmbed()">×</button>
+    <div id="embedInner" style="text-align:center; width:100%;"></div>
+  </div>
 
-<script>
-/* helpers */
-function closeEmbed() {
-  const container = document.getElementById('embedContainer');
-  const inner = document.getElementById('embedInner');
-  inner.innerHTML = '';
-  container.style.display = 'none';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-/* main function to show embed for each platform */
-function showEmbed(platform) {
-  const container = document.getElementById('embedContainer');
-  const inner = document.getElementById('embedInner');
-  inner.innerHTML = ''; // clear previous
-  container.style.display = 'block';
-  window.scrollTo({ top: container.offsetTop, behavior: 'smooth' });
-
-  if (platform === 'youtube') {
-    // Preferred embed iframe
-    const videoId = 'XfqOB4hvxlY';
-    const iframe = document.createElement('iframe');
-
-    // Standard YouTube embed with recommended attributes
-    iframe.src = 'https://www.youtube.com/embed/' + videoId + '?rel=0';
-    iframe.width = '900';
-    iframe.height = '506';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-    iframe.allowFullscreen = true;
-    iframe.referrerPolicy = 'no-referrer-when-downgrade';
-    iframe.style.maxWidth = '80%';
-    iframe.style.border = 'none';
-    iframe.style.borderRadius = '10px';
-    iframe.style.boxShadow = '0 4px 12px rgba(0,0,0,.25)';
-
-    // NOTE: some browsers won't trigger an onerror for blocked embeds. We'll still create a visible fallback:
-    // Add iframe to page, and also show a fallback link/thumbnail below it (so user can open original)
-    inner.appendChild(iframe);
-
-    // Add a small fallback block (thumbnail + open on YouTube)
-
-    // Extra debug tip for you: if embed shows an error, the video owner has likely disabled embedding.
-    // You can confirm by opening the YouTube page, clicking "Share" -> "Embed": if embed code is missing,
-    // embedding is disabled for that video.
+  <script>
+  function closeEmbed() {
+    const container = document.getElementById('embedContainer');
+    const inner = document.getElementById('embedInner');
+    inner.innerHTML = '';
+    container.style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  else if (platform === 'instagram') {
-    // Instagram public profile or post embed (works for public content)
-    // Using the instagram embed URL you already used:
-    const iframe = document.createElement('iframe');
-    iframe.src = 'https://www.instagram.com/florkingcomps/embed';
-    iframe.width = '900';
-    iframe.height = '800';
-    iframe.style.maxWidth = '80%';
-    iframe.style.border = 'none';
-    iframe.style.borderRadius = '10px';
-    inner.appendChild(iframe);
-  }
+  function showEmbed(platform) {
+    const container = document.getElementById('embedContainer');
+    const inner = document.getElementById('embedInner');
+    inner.innerHTML = '';
+    container.style.display = 'block';
+    window.scrollTo({ top: container.offsetTop, behavior: 'smooth' });
 
-  else if (platform === 'twitter') {
-    // Use official Twitter (X) widgets.js to embed the tweet reliably.
-    // We'll create a blockquote with the canonical twitter.com URL (not x.com).
-    const tweetUrl = 'https://twitter.com/JoeBiden/status/1756888470599967000';
+    if (platform === 'youtube') {
+      const videoId = 'XfqOB4hvxlY';
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + videoId + '?rel=0';
+      iframe.width = '900';
+      iframe.height = '506';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.style.maxWidth = '80%';
+      iframe.style.border = 'none';
+      iframe.style.borderRadius = '10px';
+      iframe.style.boxShadow = '0 4px 12px rgba(0,0,0,.25)';
+      inner.appendChild(iframe);
+    }
 
-    // Insert blockquote markup required by platform.twitter.com/widgets.js
-    const block = document.createElement('blockquote');
-    block.className = 'twitter-tweet';
-    block.setAttribute('data-lang', 'en');
-    block.style.margin = '0 auto';
-    block.style.maxWidth = '680px';
-    block.innerHTML = `<a href="${tweetUrl}"></a>`; // the script will replace this
+    else if (platform === 'instagram') {
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.instagram.com/florkingcomps/embed';
+      iframe.width = '900';
+      iframe.height = '800';
+      iframe.style.maxWidth = '80%';
+      iframe.style.border = 'none';
+      iframe.style.borderRadius = '10px';
+      inner.appendChild(iframe);
+    }
 
-    inner.appendChild(block);
+    else if (platform === 'twitter') {
+      const tweetUrl = 'https://twitter.com/JoeBiden/status/1756888470599967000';
+      const block = document.createElement('blockquote');
+      block.className = 'twitter-tweet';
+      block.setAttribute('data-lang', 'en');
+      block.style.margin = '0 auto';
+      block.style.maxWidth = '680px';
+      block.innerHTML = `<a href="${tweetUrl}"></a>`;
+      inner.appendChild(block);
 
-    // Add the widgets.js script to render the tweet. If already on the page, this will just hydrate.
-    if (!window.twttr) {
-      // Append script once
-      const s = document.createElement('script');
-      s.src = 'https://platform.twitter.com/widgets.js';
-      s.async = true;
-      s.onload = () => { /* widgets script loaded */ };
-      document.body.appendChild(s);
-    } else {
-      // If script already loaded, ask it to process newly added block
-      try {
-        window.twttr.widgets.load();
-      } catch (e) {
-        // ignore
+      if (!window.twttr) {
+        const s = document.createElement('script');
+        s.src = 'https://platform.twitter.com/widgets.js';
+        s.async = true;
+        document.body.appendChild(s);
+      } else {
+        try {
+          window.twttr.widgets.load();
+        } catch (e) {}
       }
     }
 
-    // Important: use the twitter.com canonical URL (as above). That avoids redirects that caused xoilac tv to appear.
+    else {
+      inner.innerText = 'Unknown platform';
+    }
   }
-
-  else {
-    inner.innerText = 'Unknown platform';
-  }
-}
-</script>
-
+  </script>
 </body>
 </html>
